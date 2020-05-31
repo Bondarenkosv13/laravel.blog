@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name', 150)->unique();
             $table->text('description');
+            $table->timestamps();
         });
     }
 

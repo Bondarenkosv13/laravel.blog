@@ -19,9 +19,11 @@ class CreateProductsTable extends Migration
             $table->string('name', 150);
             $table->text('description')->nullable();
             $table->string('short_description', 250);
+            $table->text('thumbnail');
             $table->float('price');
             $table->integer('discount')->default(0);
             $table->unsignedInteger('quantity')->default(0);
+            $table->timestamps();
         });
     }
 

@@ -8,7 +8,7 @@ class OrdersStatus extends Model
 {
     protected $table = 'orders_statuses';
 
-    protected $fillable = ['id', 'name'];
+    protected $fillable = ['id', 'type'];
 
     public function orders()
     {

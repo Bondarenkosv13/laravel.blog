@@ -14,22 +14,18 @@ class Product extends Model
         'short_description',
         'price',
         'discount',
-        'quantity'
+        'quantity',
+        'thumbnail'
     ];
 
     public function categories()
     {
-        return $this->hasMany(\App\Models\Category::class);
+        return $this->belongsToMany(\App\Models\Category::class);
     }
 
     public function orders()
     {
         return $this->belongsToMany(\App\Models\Order::class)->withPivot('quantity', 'price');
-    }
-
-    public function thumbnail()
-    {
-        return $this->morphMany(\App\Models\Image::class, 'imageable');
     }
 
     public function image()
