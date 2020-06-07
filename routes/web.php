@@ -14,8 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+
+    Route::resource('/categories', 'CategoriesController')->except('show');
+
+    Route::resource('/posts', 'PostController');
+});

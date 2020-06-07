@@ -59,4 +59,14 @@ class User extends Authenticatable
     {
         return $this->morphOne(\App\Models\Image::class, 'imageable');
     }
+
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = \Hash::make($password);
+    }
+
+    public function getIsAdminAttribute($password)
+    {
+        return $this->role->name === config('roles.admin');
+    }
 }
