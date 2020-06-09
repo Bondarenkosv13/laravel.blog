@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\UploadedFile;
+
 
 
 class Image extends Model
@@ -35,9 +35,5 @@ class Image extends Model
         return $this->morphMany(\App\Models\Category::class, 'imageable');
     }
 
-    public function setPathAttribute(UploadedFile $file)
-    {
-        $imageService = app()->make(\App\Services\Contract\ImageServiceInterface::class);
-        $this->path = $imageService->upload($file);
-    }
+
 }
