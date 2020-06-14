@@ -12,9 +12,9 @@ $factory->define(Product::class, function (Faker $faker) {
         'name'              => $faker->unique()->sentence(rand(1,5)),
         'description'       => $faker->sentences(rand(5, 10), true),
         'short_description' => $faker->text(200),
-        'thumbnail'         => $faker->file(
-            Storage::disk('local')->path('public/seed_images'),
-            Storage::disk('local')->path('public/images')),
+        'thumbnail'         => 'public/images/' . $faker->file(
+            Storage::disk('public')->path('seed_images'),
+            Storage::disk('public')->path('images'), false),
         'price'             => $faker->randomFloat(2,100, 5000),
         'discount'          => rand(0, 35),
         'quantity'          => rand(0, 15)

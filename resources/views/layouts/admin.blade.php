@@ -47,6 +47,25 @@
                                 </a>
                             </div>
                         </li>
+                        <!-- Products Links -->
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown"
+                               class="nav-link dropdown-toggle"
+                               href="#"
+                               role="button"
+                               data-toggle="dropdown"
+                               aria-haspopup="true"
+                               aria-expanded="false" v-pre>
+                                Products <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('admin.products.index') }}"
+                                >{{ __('Products List') }}</a>
+                                <a class="dropdown-item" href="{{ route('admin.products.create') }}">
+                                    {{ __('Create Product') }}
+                                </a>
+                            </div>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

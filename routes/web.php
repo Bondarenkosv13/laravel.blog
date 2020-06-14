@@ -22,5 +22,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->name(
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     Route::resource('/categories', 'CategoriesController')->except('show');
-    Route::resource('/products', 'PostController')->except('show');
+    Route::resource('/products', 'ProductsController')->except('show');
 });
