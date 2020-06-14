@@ -8,6 +8,7 @@ class Product extends Model
 {
     protected $fillable =[
         'id',
+        'category_id',
         'sku',
         'name',
         'description',
@@ -20,7 +21,7 @@ class Product extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(\App\Models\Category::class);
+        return $this->belongsTo(\App\Models\Category::class);
     }
 
     public function orders()

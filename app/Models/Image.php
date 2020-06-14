@@ -35,5 +35,9 @@ class Image extends Model
         return $this->morphMany(\App\Models\Category::class, 'imageable');
     }
 
-
+//    public function setPathAttribute(\Illuminate\Http\UploadedFile $file)
+//    {
+//        $imageService = app()->make(\App\Services\Contract\ImageServiceInterface::class);
+//        $this->path = $imageService->upload($file);
+//    }
 }
