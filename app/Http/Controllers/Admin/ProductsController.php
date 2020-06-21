@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateCategoryRequest;
+use App\Http\Requests\CreateProductRequest;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
-use Illuminate\Support\Facades\Storage;
 
 class ProductsController extends Controller
 {
@@ -25,33 +26,53 @@ class ProductsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        dd(__METHOD__);
+        $categories = Category::all()->toArray();
+        return view('admin/products/create', compact('categories'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CreateCategoryRequest $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        dd(__METHOD__);
+       $product = $request->all();
+       unset($product['products-images']);
+       unset($product['_token']);
+       unset($product['thumbnail']);
+        if(!empty($request->file('thumbnail'))) {
+            $imageService = app()->make(\App\Services\Contract\ImageServiceInterface::class);
+            $filePath = $imageService->upload($request->file('thumbnail'));
+            $product['thumbnail'] = $filePath;
+        }
+        $product = Product::create($product);
+
+        if(!empty($request->file('products-images'))) {
+            foreach ($request->file('products-images') as $image) {
+                $filePath = $imageService->upload($image);
+                $product->image()->create(['path' => $filePath]);
+            }
+        }
+
+        return redirect(route('admin.products.index'))->with(['status' => 'The product has been created!']);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Product $product
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function edit($id)
+    public function edit(Product $product)
     {
-        dd(__METHOD__);
+        $categories = Category::all()->toArray();
+        return view('admin/products/edit', compact('categories', 'product'));
     }
 
     /**

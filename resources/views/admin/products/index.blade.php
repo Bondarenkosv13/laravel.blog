@@ -16,7 +16,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @each('admin.products.parts.product_row', $products, 'product')
+                    @each('admin.products.parts.product_row', $products , 'product')
 
                     </tbody>
                 </table>
