@@ -9,7 +9,7 @@ const htmlTemplate = `<div class="row product-images-row" style="width: 60%; mar
             <input type="file" name="products-images[]" />
         </div>
         <div class="col-4">
-            <button class="btn btn-danger product-images-remove">Remove</button>
+            <button class="btn btn-danger product-images-remove ajax">Remove</button>
         </div>
     </div>`;
 

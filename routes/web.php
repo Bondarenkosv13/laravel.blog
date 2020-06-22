@@ -17,7 +17,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('ajax')->name('ajax.')->namespace('Ajax')->group(function() {
-    Route::delete('images/{id}/remove', 'ImagesController@remove')->name('image.remove');
+    Route::delete('images/{images}/remove', 'ImagesController@remove')->name('image.remove');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->namespace('Admin')->name('admin.')->group(function () {

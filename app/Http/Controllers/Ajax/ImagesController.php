@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class ImagesController extends Controller
 {
     public function remove(Image $image)
-    {dd(1231);
+    {
         $image->delete();
         return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
     }
