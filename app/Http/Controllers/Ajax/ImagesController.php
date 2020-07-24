@@ -11,6 +11,8 @@ class ImagesController extends Controller
     public function remove(Image $image)
     {
         $image->delete();
+        $imageService = app()->make(\App\Services\Contract\ImageServiceInterface::class);
+        $imageService->remove($image->path);
         return response()->json(['success' => true, 'message' => 'Image deleted successfully.']);
     }
 }

@@ -32,6 +32,6 @@ class Order extends Model
 
     public function products()
     {
-        return $this->hasMany(\App\Models\Product::class);
+        return $this->belongsToMany(\App\Models\Product::class);
     }
 }

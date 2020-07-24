@@ -6,7 +6,9 @@
                     <div class="col-8">
                             <img src="{{Storage::url( $image->path)}}" height="250" width="250">
                             <br><br>
+                        @if(!$product->image())
                         <input type="file" name="products-images[]">
+                        @endif
                     </div>
                     <div class="col-4">
                         <button class="btn btn-danger product-images-remove ajax"

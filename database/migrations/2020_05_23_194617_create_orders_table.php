@@ -13,17 +13,6 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-//        Identical Number
-//        Customer (User) Information
-//        Name
-//        Surname
-//        Email
-//        Phone
-//        Shipping Data
-//        Country
-//        City
-//        Address
-//        Total price
 
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
